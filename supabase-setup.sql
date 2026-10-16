@@ -1,0 +1,3 @@
+-- Deprecated: this legacy setup script granted overly broad access and used
+-- conflicting policies. Review and apply supabase/migrations/002_app_metadata_rls_and_leaderboard.sql
+-- through the Supabase CLI or Dashboard SQL Editor instead.

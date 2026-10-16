@@ -1,0 +1,7 @@
+# Local environment configuration
+config/config.local.js
+config/config.js
+
+# Tooling
+node_modules/
+.DS_Store

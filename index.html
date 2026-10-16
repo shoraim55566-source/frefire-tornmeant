@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b12">
+<title>KHAN FF ESPORTS</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="#home">KHAN <span>FF</span> ESPORTS</a>
+  <button class="menu" id="menuButton" aria-label="Open menu" aria-controls="navigation" aria-expanded="false">Menu</button>
+  <nav id="navigation">
+    <a href="#tournaments">Tournaments</a>
+    <a href="#register">Registration</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#admin">Admin Panel</a>
+  </nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="inner">
+    <div class="kicker">PAKISTAN FREE FIRE COMMUNITY</div>
+    <h1>PLAY TO WIN.<br><span>PLAY LIKE A KING.</span></h1>
+    <p>Join KHAN FF ESPORTS tournaments. Check each event for entry fees, match modes, and details.</p>
+    <div class="actions">
+      <a class="btn" href="#register">REGISTER NOW</a>
+      <a class="btn alt" href="#tournaments">Explore Tournaments</a>
+    </div>
+    <div class="stats">
+      <div><strong>FREE</strong><small>Entry Fee</small></div>
+      <div><strong>BR + CS</strong><small>Game Modes</small></div>
+      <div><strong>ESPORTS</strong><small>Community</small></div>
+    </div>
+  </div>
+</section>
+<section id="tournaments">
+  <div class="inner">
+    <div class="heading">
+      <div><div class="kicker">JOIN THE BATTLE</div><h2>Featured Tournaments</h2></div>
+      <span class="pill">TOURNAMENTS</span>
+    </div>
+    <div class="grid" id="tournamentCards" aria-live="polite"></div>
+    <p id="tournamentMessage" class="message" role="status"></p>
+  </div>
+</section>
+<section id="register">
+  <div class="inner split">
+    <div>
+      <div class="kicker">GET IN THE GAME</div>
+      <h2>Player Registration</h2>
+      <p>Enter your correct Free Fire details.</p>
+      <div class="card">
+        <form id="registrationForm">
+          <label>Player / Team Name
+            <input id="playerName" maxlength="40" required placeholder="Enter player or team name">
+          </label>
+          <label>Free Fire UID
+            <input id="playerUID" inputmode="numeric" pattern="[0-9]{5,20}" required placeholder="Enter UID">
+          </label>
+          <label>Tournament
+            <select id="registrationTournament">
+              <option value="">General registration</option>
+            </select>
+          </label>
+          <label>Game Mode
+            <select id="gameMode">
+              <option>Battle Royale</option>
+              <option>Clash Squad</option>
+            </select>
+          </label>
+          <label>Contact (optional)
+            <input id="playerContact" maxlength="80" placeholder="Email or WhatsApp">
+          </label>
+          <button class="btn" type="submit">Submit Registration</button>
+          <div id="registrationMessage" class="message" role="status"></div>
+        </form>
+      </div>
+    </div>
+    <aside class="card">
+      <div class="kicker">REGISTRATION INFO</div>
+      <div class="info-row"><span>Verification</span><strong>Manual admin review</strong></div>
+      <div class="info-row"><span>Notes</span><strong>UID must be valid</strong></div>
+      <div class="info-row"><span>Rules</span><strong>One registration per UID</strong></div>
+      <p class="note">Entry acceptance depends on tournament status and admin review.</p>
+    </aside>
+  </div>
+</section>
+<section id="leaderboard">
+  <div class="inner">
+    <div class="heading">
+      <div><div class="kicker">TOP COMPETITORS</div><h2>Leaderboard</h2></div>
+      <span class="pill">APPROVED PLAYERS</span>
+    </div>
+    <div class="card">
+      <label>Standings for
+        <select id="leaderboardTournament"><option value="">All tournaments</option></select>
+      </label>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rank</th><th>Player / Team</th><th>Mode</th><th>Points</th></tr></thead>
+          <tbody id="leaderboardRows"></tbody>
+        </table>
+      </div>
+      <p id="leaderboardMessage" class="note"></p>
+    </div>
+  </div>
+</section>
+<section id="admin">
+  <div class="inner">
+    <div class="kicker">ORGANIZER AREA</div><h2>Admin Panel</h2>
+    <div class="card">
+      <p class="note">Sign in with the authorized Supabase Auth admin account.</p>
+      <div id="loginArea">
+        <form id="adminLogin">
+          <label>Admin email
+            <input id="adminEmail" type="email" autocomplete="username" required placeholder="Admin email">
+          </label>
+          <label>Password
+            <input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Supabase Auth password">
+          </label>
+          <button class="btn" type="submit">Admin Login</button>
+        </form>
+        <p id="loginMessage" class="message" role="status"></p>
+      </div>
+      <div id="adminArea" class="hidden">
+        <h3>Manage Registrations</h3>
+        <div class="tools">
+          <button class="btn alt" type="button" id="refreshButton">Refresh</button>
+          <button class="btn alt" type="button" id="exportButton">Export CSV</button>
+          <button class="btn" type="button" id="logoutButton">Logout</button>
+        </div>
+        <div class="admin-filters">
+          <input id="registrationSearch" type="search" placeholder="Search player, UID, or tournament">
+          <select id="registrationStatusFilter">
+            <option value="pending">Pending</option>
+            <option value="all">All statuses</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Player / UID</th><th>Tournament</th><th>Mode</th><th>Status</th><th>Points</th><th>Save</th><th>Delete</th></tr></thead>
+            <tbody id="adminRows"></tbody>
+          </table>
+        </div>
+        <p id="adminMessage" class="message"></p>
+        <div class="admin-section">
+          <h3>Manage Tournaments</h3>
+          <form id="tournamentForm" class="card">
+            <input id="tournamentId" type="hidden">
+            <div class="admin-grid">
+              <label>Tournament name
+                <input id="tournamentName" maxlength="80" required placeholder="Tournament name">
+              </label>
+              <label>Mode
+                <select id="tournamentMode">
+                  <option>Battle Royale</option>
+                  <option>Clash Squad</option>
+                </select>
+              </label>
+              <label>Match date and time
+                <span class="note">Entered in your browser's local timezone.</span>
+                <input id="tournamentDate" type="datetime-local">
+              </label>
+              <label>Entry fee
+                <input id="tournamentEntryFee" type="number" min="0" max="999999" step="1" value="0" required>
+              </label>
+              <label>Prize pool
+                <input id="tournamentPrizePool" type="number" min="0" max="999999999" step="1" value="0" required>
+              </label>
+              <label>Maximum teams
+                <input id="tournamentMaxTeams" type="number" min="1" max="10000" step="1" value="48" required>
+              </label>
+              <label>Registration status
+                <select id="tournamentStatus">
+                  <option value="draft">Draft</option>
+                  <option value="open">Open</option>
+                  <option value="closed">Closed</option>
+                  <option value="live">Live</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </label>
+            </div>
+            <label>Tournament rules
+              <textarea id="tournamentRules" maxlength="4000" placeholder="Rules and match details"></textarea>
+            </label>
+            <div class="tools">
+              <button class="btn" type="submit" id="tournamentSaveButton">Create tournament</button>
+              <button class="btn alt hidden" type="button" id="cancelTournamentEdit">Cancel edit</button>
+            </div>
+          </form>
+          <p id="tournamentAdminMessage" class="message" role="status"></p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tournament</th><th>Schedule</th><th>Teams</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="tournamentAdminRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="logo">KHAN <span>FF</span> ESPORTS</div>
+  <p>Free Fire Community ? Pakistan</p>
+  <small>Fan community website. Not affiliated with Garena.</small>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config/config.js"></script>
+<script type="module" src="js/supabase-client.js"></script>
+<script type="module" src="js/registration.js"></script>
+<script type="module" src="js/auth.js"></script>
+<script type="module" src="js/admin-dashboard.js"></script>
+<script>
+  document.getElementById('menuButton').addEventListener('click', () => {
+    const navigation = document.getElementById('navigation');
+    const open = navigation.classList.toggle('open');
+    document.getElementById('menuButton').setAttribute('aria-expanded', String(open));
+  });
+  document.querySelectorAll('#navigation a').forEach((link) => {
+    link.addEventListener('click', () => document.getElementById('navigation').classList.remove('open'));
+  });
+</script>
+</body>
+</html>
