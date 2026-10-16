@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-       <loc>https://shoraim55566-source.github.io/frefire-tornmeant/</loc>
-       <lastmod>2026-10-16T11:28:26+00:00</lastmod>
-       <priority>1.0000</priority>
+    <loc>https://shoraim55566-source.github.io/frefire-tornmeant/</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
 </urlset>
