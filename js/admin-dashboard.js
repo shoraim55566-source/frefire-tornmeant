@@ -65,7 +65,7 @@ function setBanner(message, type = 'status') {
 
 async function loadRegistrations(status = getFilterState().status) {
   if (!supabase) {
-    throw new Error('Supabase is not configured. Add your project URL and publishable key in config/config.js.');
+    throw new Error('Supabase is not configured. Add your project URL and publishable key in js/supabase/config/config.js.');
   }
 
   let query = supabase
@@ -87,7 +87,7 @@ async function loadRegistrations(status = getFilterState().status) {
 
 async function loadTournaments() {
   if (!supabase) {
-    throw new Error('Supabase is not configured. Add your project URL and publishable key in config/config.js.');
+    throw new Error('Supabase is not configured. Add your project URL and publishable key in js/supabase/config/config.js.');
   }
 
   const { data, error } = await supabase
@@ -680,7 +680,7 @@ function bindDashboardEvents() {
 
 async function refreshAdminDashboard() {
   if (!supabase) {
-    setBanner('Supabase is not configured. Add your project URL and publishable key in config/config.js.', 'error');
+    setBanner('Supabase is not configured. Add your project URL and publishable key in js/supabase/config/config.js.', 'error');
     return;
   }
 

@@ -34,7 +34,7 @@ function setAdminVisible(visible) {
 async function signInAdmin(event) {
   event.preventDefault();
   if (!supabase) {
-    setMessage('loginMessage', 'Supabase is not configured. Add your project URL and publishable key in config/config.js.', 'error');
+    setMessage('loginMessage', 'Supabase is not configured. Add your project URL and publishable key in js/supabase/config/config.js.', 'error');
     return;
   }
 

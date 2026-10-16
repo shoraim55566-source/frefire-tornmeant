@@ -16,7 +16,7 @@ function isValidUid(uid) {
 async function submitRegistration(event) {
   event.preventDefault();
   if (!supabase) {
-    setMessage('Supabase is not configured. Add your project URL and publishable key in config/config.js.', 'error');
+    setMessage('Supabase is not configured. Add your project URL and publishable key in js/supabase/config/config.js.', 'error');
     return;
   }
 

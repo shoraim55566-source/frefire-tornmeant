@@ -10,7 +10,7 @@ export const supabaseConfig = {
 
 export function ensureSupabaseClient() {
   if (!supabaseConfig.ready) {
-    console.warn('Supabase configuration missing. Add your project URL and publishable key in config/config.js.');
+    console.warn('Supabase configuration missing. Add your project URL and publishable key in js/supabase/config/config.js.');
     return null;
   }
 
